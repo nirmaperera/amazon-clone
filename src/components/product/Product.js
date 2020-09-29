@@ -3,8 +3,24 @@ import StarRateOutlinedIcon from '@material-ui/icons/StarRateOutlined';
 import AddShoppingCartOutlinedIcon from '@material-ui/icons/AddShoppingCartOutlined';
 
 import './Product.css';
+import { useStateValue } from '../../StateProvider';
 
 function Product({ id, title, price, image, rating }) {
+    const [{ cart }, dispatch] = useStateValue();
+    console.log('the cart', cart)
+    const addToCart = () => {
+        //dispatch item into data layer
+        dispatch({
+            type: 'ADD_TO_CART',
+            item: {
+                id: id,
+                title: title,
+                image: image,
+                price: price,
+                rating: rating
+            },
+        });
+    }
     return (
         <div className="product-container">
             <div className="product-info">
@@ -21,7 +37,7 @@ function Product({ id, title, price, image, rating }) {
                 </div>
             </div>
             <img src={image}></img>
-            <button> < AddShoppingCartOutlinedIcon />Add to Cart</button>
+            <button onClick={addToCart}> <AddShoppingCartOutlinedIcon />Add to Cart</button>
         </div>
     );
 }
