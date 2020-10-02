@@ -32,9 +32,10 @@ function Orders() {
         <div className="orders-container">
             <h1>Your Orders</h1>
             <div className="orders-order">
-                {orders?.map(order => (
-                    <Order order={order} />
-                ))}
+                {orders.length > 0 ?
+                    orders?.map(order => (
+                        <Order order={order} />
+                    )) : <h3>You have currently have no orders.</h3>}
             </div>
 
 

@@ -55,10 +55,10 @@
     color:#111;
     background-color: #f0c14b;
     cursor: pointer;
-    height: 30px;
+    height: 35px;
     width: 100%;
     box-shadow: inset 0px 1px 8px 0px rgba(255,255,255,1);
-    border-radius: 2px;
+    border-radius: 5px;
 }
 
 .login-signIn:hover{
@@ -77,4 +77,45 @@
 
 .login-register:hover{
     background: linear-gradient(to bottom,#f7f8fa,#e7e9ec);
+}
+
+.signUp-container{
+    width: 340px;
+    text-align: center;
+    color: grey;
+    margin-top: 30px;
+}
+
+.signUp-divider.signUp-divider-break{
+    text-align: center;
+    position: relative;
+    top: 2px;
+    padding-top: 1px;
+    margin-bottom: 14px;
+    line-height: 0;
+}
+
+.signUp-divider.signUp-divider-break h5{
+    line-height: 1;
+    font-size: 12px;
+    color: #767676;
+    font-weight: 400;
+    z-index: 2;
+    position: relative;
+    display: inline-block;
+    background-color: #fff;
+    padding: 0 8px 0 7px;
+}
+
+.signUp-divider.signUp-divider-break:after{
+    content: "";
+    width: 100%;
+    background-color: transparent;
+    display: block;
+    height: 1px;
+    border-top: 1px solid #e7e7e7;
+    position: absolute;
+    top: 50%;
+    margin-top: -1px;
+    z-index: 1;
 }

@@ -5,13 +5,16 @@ import { Link } from 'react-router-dom';
 import './Header.css';
 import { useStateValue } from '../../StateProvider';
 import { auth } from "../../firebase";
+import { useHistory } from 'react-router-dom';
 
 function Header() {
     const [{ cart, user }] = useStateValue();
+    const history = useHistory();
 
     const handleAuth = () => {
         if (user) {
             auth.signOut();
+            history.push('/')
         }
     }
 
@@ -44,10 +47,11 @@ function Header() {
                     <span className="header-optionLineTwo"> Prime</span>
                 </div>
 
-                <Link to='/checkout'>
+
+                <Link to={!user ? './login' : './checkout'}>
                     <div className="header-optionBasket">
                         <ShoppingCartOutlinedIcon />
-                        <span className="header-optionLineTwo header-basketCount">{cart?.length}</span>
+                        <span className="header-optionLineTwo header-basketCount">{!user ? 0 : cart?.length}</span>
                     </div>
                 </Link>
 

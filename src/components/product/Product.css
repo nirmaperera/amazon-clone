@@ -35,6 +35,11 @@
     display: flex;
     align-items: center;
     border-radius: 5px;
+    padding:5px 10px;
+}
+
+.product-container > button > svg{
+    font-size: 1rem;
 }
 
 .product-price{

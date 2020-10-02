@@ -1,0 +1,16 @@
+.signUp-btn{
+    border:1px solid;
+    margin-top:10px;
+    border-color: #a88734 #9c7e31 #846a29;
+    color:#111;
+    background-color: #f0c14b;
+    cursor: pointer;
+    height: 35px;
+    width: 100%;
+    box-shadow: inset 0px 1px 8px 0px rgba(255,255,255,1);
+    border-radius: 5px;
+}
+
+.signUp-btn:hover{
+    background: linear-gradient(to bottom,#f5d78e,#eeb933)
+}
