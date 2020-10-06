@@ -1,8 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Product from '../product/Product';
 import './Home.css';
 
+import { db } from "../../firebase";
+import { useStateValue } from '../../StateProvider';
+
 function Home() {
+    const [products, setProducts] = useState([]);
+    const [{ }, dispatch] = useStateValue();
+    let productsTemp = [];
+    useEffect(() => {
+        db.collection("products")
+            .get()
+            .then(snapshot => {
+                snapshot.forEach(doc => {
+                    const product = {
+                        id: doc.id,
+                        title: doc.data().title,
+                        price: doc.data().price,
+                        rating: doc.data().rating,
+                        image: doc.data().image,
+                        description: doc.data().description
+                    }
+                    productsTemp.push(product)
+                    console.log(product);
+                })
+                setProducts(productsTemp);
+                dispatch({
+                    type: 'GET_PRODUCTS',
+                    products: productsTemp
+
+                });
+            })
+
+
+
+    }, []);
     return (
         <div className="home-container">
             <div className="home">
@@ -13,61 +46,41 @@ function Home() {
                 />
             </div>
             <div className="home-row">
-                <Product id="12321341" title="The Lean Startup: How Constant Innovation Creates Radically Successful Businesses Paperback" price={11.99} image='https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._AC_SY400_.jpg' rating={5} />
-                <Product
-                    id="12953928"
-                    title="Quality Durables Unisex Adult 4-Pack Reusable Woven Face Covering with Adjustable Nose Wire"
-                    price={17.00}
-                    rating={5}
-                    image="https://m.media-amazon.com/images/I/81A-iOpAbDL._AC_SY400_.jpg"
-                />
-                <Product
-                    id="85739923"
-                    title="Makion Halloween Lights 2.5M/8.2FT 10 Led Pumpkin Lanterns Battery Powered String Lights"
-                    price={13.99}
-                    rating={4}
-                    image="https://m.media-amazon.com/images/I/51SnyGJqAAL._AC_SY322_.jpg"
-                />
-                <Product
-                    id="73932933"
-                    title="InnoGear Essential Oil Diffuser, Upgraded Diffusers for Essential Oils Aromatherapy Diffuser Cool Mist Humidifier"
-                    price={14.99}
-                    rating={4}
-                    image="https://images-na.ssl-images-amazon.com/images/I/51IwYHykGqL._SY879_.jpg"
-                />
-            </div>
-            <div className="home-row">
-                <Product
-                    id="4903850"
-                    title="Samsung LC49RG90SSUXEN 49' Curved LED Gaming Monitor"
-                    price={199.99}
-                    rating={3}
-                    image="https://images-na.ssl-images-amazon.com/images/I/71Swqqe7XAL._AC_SX466_.jpg"
-                />
-                <Product
-                    id="23445930"
-                    title="Amazon Echo (3rd generation) | Smart speaker with Alexa, Charcoal Fabric"
-                    price={98.99}
-                    rating={5}
-                    image="https://media.very.co.uk/i/very/P6LTG_SQ1_0000000071_CHARCOAL_SLf?$300x400_retinamobilex2$"
-                />
-                <Product
-                    id="3254354345"
-                    title="New Apple iPad Pro (12.9-inch, Wi-Fi, 128GB) - Silver (4th Generation)"
-                    price={598.99}
-                    rating={4}
-                    image="https://images-na.ssl-images-amazon.com/images/I/816ctt5WV5L._AC_SX385_.jpg"
-                />
+                {products && products.slice(0, 4).map(item => (
+                    <Product
+                        id={item.id}
+                        title={item.title}
+                        image={item.image}
+                        price={item.price}
+                        rating={item.rating}
+                        description={item.description}
 
+                    />
+                ))}
             </div>
             <div className="home-row">
-                <Product
-                    id="90829332"
-                    title="Samsung LC49RG90SSUXEN 49' Curved LED Gaming Monitor - Super Ultra Wide Dual WQHD 5120 x 1440"
-                    price={1094.98}
-                    rating={4}
-                    image="https://images-na.ssl-images-amazon.com/images/I/6125mFrzr6L._AC_SX355_.jpg"
-                />
+                {products && products.slice(4, 6).map(item => (
+                    <Product
+                        id={item.id}
+                        title={item.title}
+                        image={item.image}
+                        price={item.price}
+                        rating={item.rating}
+                        description={item.description}
+                    />
+                ))}
+            </div>
+            <div className="home-row">
+                {products && products.slice(7, 8).map(item => (
+                    <Product
+                        id={item.id}
+                        title={item.title}
+                        image={item.image}
+                        price={item.price}
+                        rating={item.rating}
+                        description={item.description}
+                    />
+                ))}
             </div>
         </div>
     );

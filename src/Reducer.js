@@ -2,6 +2,7 @@ export const initialState = {
     cart: [],
     subTotal: 0,
     user: null,
+    product: [],
 };
 
 //selector
@@ -42,6 +43,14 @@ const reducer = (state, action) => {
                 ...state,
                 cart: []
             };
+
+        case 'GET_PRODUCTS':
+            console.log(action.products);
+            return {
+                ...state,
+                products: action.products
+            };
+
         default:
             return state
     }

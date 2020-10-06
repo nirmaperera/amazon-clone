@@ -11,12 +11,12 @@ import Payment from './components/payment/Payment';
 import Orders from './components/orders/Orders';
 import Login from './components/login/Login';
 import SignUp from './components/SignUp/SignUp';
+import ProductOverview from './components/product/productOverview';
 
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 
 import { auth } from "./firebase";
-import Register from './components/SignUp/SignUp';
 
 const promise = loadStripe(
   "pk_test_51HXTdHDFq5Jfszr5r2VjtOKLGtAFwqHo4PX7LRrP0NMqtTm4eZIhjozPFKRmhSnfPTej0MV8vCh8fKGfolHlTCmB004kzYSx5z"
@@ -69,6 +69,10 @@ function App() {
         <Route path="/orders">
           <Header />
           <Orders />
+        </Route>
+        <Route path="/product">
+          <Header />
+          <ProductOverview />
         </Route>
         <Route exact path="/">
           <Header />

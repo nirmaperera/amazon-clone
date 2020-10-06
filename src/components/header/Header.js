@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import { Link } from 'react-router-dom';
@@ -6,9 +6,13 @@ import './Header.css';
 import { useStateValue } from '../../StateProvider';
 import { auth } from "../../firebase";
 import { useHistory } from 'react-router-dom';
+import SearchList from '../searchList/SearchList';
 
 function Header() {
-    const [{ cart, user }] = useStateValue();
+    const [{ cart, user, products }] = useStateValue();
+    const [search, setSearch] = useState('');
+    const [isSearching, setSearching] = useState(false);
+
     const history = useHistory();
 
     const handleAuth = () => {
@@ -18,15 +22,32 @@ function Header() {
         }
     }
 
+    const handleSearch = (event) => {
+        setSearch(event.target.value);
+        if (event.target.value.length !== 0) {
+            setSearching(true)
+        } else setSearching(false)
+    }
+
     return (
         <div className="header-container">
             <Link to='/'>
                 <img className="header-logo"
                     alt="logo" src="http://pngimg.com/uploads/amazon/amazon_PNG11.png" />
             </Link>
-            <div className="header-search">
-                <input className="header-searchInput" type="text" />
-                <SearchIcon className="header-searchIcon" />
+            <div className="header-search" style={{ top: isSearching ? ' 200px' : '0px' }}>
+                <div className="header-searchBar">
+                    <input className="header-searchInput" type="text" value={search} onChange={handleSearch} />
+                    <SearchIcon className="header-searchIcon" />
+                </div>
+                <div className="header-search-dropdown" style={{ maxHeight: isSearching ? ' 400px' : '0px' }}>
+                    {products && products?.filter(searchForProduct(search)).map((product) => <SearchList key={product.id} searching={isSearching} title={product.title} id={product.id}
+
+                        image={product.image}
+                        price={product.price}
+                        rating={product.rating}
+                        description={product.description} />)}
+                </div>
             </div>
             <div className="header-nav">
                 <Link to={!user && '/login'}>
@@ -60,5 +81,13 @@ function Header() {
         </div>
     );
 }
+
+const searchForProduct = function (search) {
+    return function (x) {
+
+        return x.title.toLowerCase().includes(search.toLowerCase()) || !search;
+    }
+}
+
 
 export default Header;

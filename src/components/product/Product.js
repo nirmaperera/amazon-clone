@@ -1,13 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import StarRateOutlinedIcon from '@material-ui/icons/StarRateOutlined';
 import AddShoppingCartOutlinedIcon from '@material-ui/icons/AddShoppingCartOutlined';
 
 import './Product.css';
 import { useStateValue } from '../../StateProvider';
 
-function Product({ id, title, price, image, rating }) {
+function Product({ id, title, price, image, rating, description }) {
+    //console.log(this.props, 'this props')
     const [{ cart }, dispatch] = useStateValue();
-    console.log('the cart', cart)
+    // console.log('the cart', cart)
     const addToCart = () => {
         //dispatch item into data layer
         dispatch({
@@ -17,14 +19,29 @@ function Product({ id, title, price, image, rating }) {
                 title: title,
                 image: image,
                 price: price,
-                rating: rating
+                rating: rating,
+                description: description
             },
         });
     }
     return (
         <div className="product-container">
             <div className="product-info">
-                <p>{title}</p>
+
+                <p>
+                    <Link to={{
+                        pathname: '/product',
+                        state: {
+                            id: id,
+                            title: title,
+                            price: price,
+                            image: image,
+                            rating: rating,
+                            description: description,
+                        }
+                    }}>{title}</Link>
+                </p>
+
                 <p className="product-price">
                     <small>$</small>
                     <strong>{price}</strong>
