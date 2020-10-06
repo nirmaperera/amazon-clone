@@ -81,10 +81,12 @@
     border-bottom-right-radius: 5px;
     position: relative;
     overflow-x: hidden;
+    z-index: 20;
 }
 .header-searchBar{
     display:flex;
     width:100%;
+    z-index: 20;
 }
 .header-search-dropdown::-webkit-scrollbar{
     display: none;

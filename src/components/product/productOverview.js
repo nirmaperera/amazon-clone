@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import StarRateOutlinedIcon from '@material-ui/icons/StarRateOutlined';
 import AddShoppingCartOutlinedIcon from '@material-ui/icons/AddShoppingCartOutlined';
-
+import moment from 'moment';
 import './Product.css';
 import { useStateValue } from '../../StateProvider';
 
@@ -27,6 +27,17 @@ function ProductOverview(props) {
             },
         });
     }
+
+    const calculateDate = (num) => {
+        console.log(moment().add(num, 'weeks').startOf('isoWeek'))
+        let nextWeek = moment().add(num, 'weeks').startOf('isoWeek');
+        nextWeek = nextWeek._d
+        nextWeek.toDateString();
+        return nextWeek
+    }
+
+
+
     return (
         <div className="productOverview-container">
             <div>
@@ -61,8 +72,8 @@ function ProductOverview(props) {
                 <div className="productOverview-last">
                     <p><input type='radio'></input> <strong>One-time purchase: </strong> ${props.location.state.price}</p>
                     <p><strong>FREE Shipping</strong> on your first order.</p>
-                    <p>Arrives: <strong>Wednesday, Oct 14</strong> </p>
-                    <p>Fastest delivery: <strong>Thursday, Oct 8</strong></p>
+                    <p>Arrives: <strong>{moment(calculateDate(2)).format('MMMM Do YYYY')}</strong> </p>
+                    <p>Fastest delivery:  <strong>{moment(calculateDate(1)).format('MMMM Do YYYY')}</strong> </p>
                     <h4 className="productOverview-last-stock">In Stock.</h4>
                     <button onClick={addToCart}> <AddShoppingCartOutlinedIcon />Add to Cart</button>
                 </div>

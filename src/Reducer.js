@@ -2,7 +2,7 @@ export const initialState = {
     cart: [],
     subTotal: 0,
     user: null,
-    product: [],
+    product: []
 };
 
 //selector
@@ -50,7 +50,6 @@ const reducer = (state, action) => {
                 ...state,
                 products: action.products
             };
-
         default:
             return state
     }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import StarRateOutlinedIcon from '@material-ui/icons/StarRateOutlined';
 import AddShoppingCartOutlinedIcon from '@material-ui/icons/AddShoppingCartOutlined';
@@ -27,7 +27,6 @@ function Product({ id, title, price, image, rating, description }) {
     return (
         <div className="product-container">
             <div className="product-info">
-
                 <p>
                     <Link to={{
                         pathname: '/product',

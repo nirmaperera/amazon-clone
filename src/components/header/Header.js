@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import { Link } from 'react-router-dom';
@@ -7,13 +7,16 @@ import { useStateValue } from '../../StateProvider';
 import { auth } from "../../firebase";
 import { useHistory } from 'react-router-dom';
 import SearchList from '../searchList/SearchList';
+import Backdrop from '../backdrop/backdrop';
 
 function Header() {
-    const [{ cart, user, products }] = useStateValue();
+    const [{ cart, user, products }, dispatch] = useStateValue();
     const [search, setSearch] = useState('');
     const [isSearching, setSearching] = useState(false);
+    const [sideOpen, setSideOpen] = useState(true);
 
     const history = useHistory();
+
 
     const handleAuth = () => {
         if (user) {
@@ -26,9 +29,23 @@ function Header() {
         setSearch(event.target.value);
         if (event.target.value.length !== 0) {
             setSearching(true)
-        } else setSearching(false)
+        } else {
+            setSearching(false)
+            setSearch("");
+        }
     }
 
+    const backdropClickHandler = () => {
+        setSideOpen(false)
+        setSearching(false)
+    };
+
+
+    let backdrop;
+
+    if (sideOpen) {
+        backdrop = <Backdrop click={backdropClickHandler} />
+    }
     return (
         <div className="header-container">
             <Link to='/'>
@@ -75,7 +92,7 @@ function Header() {
                         <span className="header-optionLineTwo header-basketCount">{!user ? 0 : cart?.length}</span>
                     </div>
                 </Link>
-
+                {isSearching ? backdrop : null}
 
             </div>
         </div>
