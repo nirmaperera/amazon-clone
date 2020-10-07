@@ -48,39 +48,41 @@ function App() {
 
   }, [])
   return (
-    <Router>
-      <Switch>
-        <Route path="/checkout">
-          <Header />
-          <Checkout />
-        </Route>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/signup">
-          <SignUp />
-        </Route>
-        <Route path="/payment">
-          <Header />
-          <Elements stripe={promise}>
-            <Payment />
-          </Elements>
-        </Route>
-        <Route path="/orders">
-          <Header />
-          <Orders />
-        </Route>
-        <Route path="/product">
-          <Header />
-          <ProductOverview />
-        </Route>
-        <Route exact path="/">
-          <Header />
-          <Home />
-        </Route>
-      </Switch>
+    <div id="app">
+      <Router>
+        <Switch>
+          <Route path="/checkout">
+            <Header />
+            <Checkout />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/signup">
+            <SignUp />
+          </Route>
+          <Route path="/payment">
+            <Header />
+            <Elements stripe={promise}>
+              <Payment />
+            </Elements>
+          </Route>
+          <Route path="/orders">
+            <Header />
+            <Orders />
+          </Route>
+          <Route path="/product">
+            <Header />
+            <ProductOverview />
+          </Route>
+          <Route exact path="/">
+            <Header />
+            <Home />
+          </Route>
+        </Switch>
 
-    </Router>
+      </Router>
+    </div>
   );
 }
 

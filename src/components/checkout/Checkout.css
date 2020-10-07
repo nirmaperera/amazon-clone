@@ -15,3 +15,23 @@
     padding:10px;
     border-bottom: 1px solid lightgray;
 }
+
+@media (max-width: 768px) {
+    .checkout-container{
+        flex-direction: column;
+
+    }
+    .checkout-right{
+        margin:0 auto;
+        margin-top:10%;
+
+    }
+}
+
+@media (max-width: 414px) {
+    .checkout-container{
+        flex-direction: column;
+        width: 520px;
+    }
+}
+

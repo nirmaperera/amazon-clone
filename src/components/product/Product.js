@@ -38,7 +38,7 @@ function Product({ id, title, price, image, rating, description }) {
                             rating: rating,
                             description: description,
                         }
-                    }}>{title}</Link>
+                    }}>{title.substring(0, 100) + "..."}</Link>
                 </p>
 
                 <p className="product-price">

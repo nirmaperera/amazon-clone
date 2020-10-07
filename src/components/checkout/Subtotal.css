@@ -29,3 +29,10 @@
     cursor: pointer;
     color:#111;
 }
+
+@media (max-width: 414px) {
+    .subtotal-container{
+        margin: 0px auto;
+        margin-top: 50px;
+    }
+}

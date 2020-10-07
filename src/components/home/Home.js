@@ -46,7 +46,7 @@ function Home() {
                 />
             </div>
             <div className="home-row">
-                {products && products.slice(0, 4).map(item => (
+                {products && products.slice(0, 3).map(item => (
                     <Product
                         id={item.id}
                         title={item.title}
@@ -59,7 +59,7 @@ function Home() {
                 ))}
             </div>
             <div className="home-row">
-                {products && products.slice(4, 6).map(item => (
+                {products && products.slice(3, 6).map(item => (
                     <Product
                         id={item.id}
                         title={item.title}
@@ -71,7 +71,7 @@ function Home() {
                 ))}
             </div>
             <div className="home-row">
-                {products && products.slice(7, 8).map(item => (
+                {products && products.slice(7, 9).map(item => (
                     <Product
                         id={item.id}
                         title={item.title}

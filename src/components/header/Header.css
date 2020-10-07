@@ -8,6 +8,15 @@
     z-index: 100;
 }
 
+ .header-optionBasket-mobile{
+    display: none !important;
+    color:white;
+}
+
+.header-container >div:first-of-type{
+  display: none;
+}
+
 .header-logo{
     width:100px;
     object-fit: contain;
@@ -98,7 +107,6 @@
     padding-top:10px;
     cursor: pointer;
     font-weight: 500;
-
 }
 
 .searchList-dropdown{
@@ -107,4 +115,42 @@
 
 .header-search-dropdown ul:hover{
     background-color: #e7e7e7;
+}
+
+@media (max-width: 414px) {
+    .header-container{
+      width: 560px;
+      flex-direction: column;
+      height: 95px;
+      padding-bottom: 20px;
+    }
+    .header-nav{
+        display: none;
+    }
+    .header-search{
+        width: 90%;
+        position: unset;
+
+    }
+    .header-container >div:first-of-type{
+        display: unset;
+      }
+    .header-container-mobile{
+        width: 90%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .header-optionBasket-mobile{
+        display: flex !important;
+        align-items: center;
+        position: relative;
+        left: 163px;
+
+    }
+    .header-logo{
+        position: relative;
+        left: 40px;
+    }
+
 }

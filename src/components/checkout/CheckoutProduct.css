@@ -5,7 +5,7 @@
 }
 
 .checkoutProduct-info{
-    padding-left: 20px;
+    padding-left: 30px;
 
 }
 
@@ -17,10 +17,18 @@
     background-color: #f0c14b;
     cursor: pointer;
     border-radius: 5px;
+    padding: 5px 10px;
 }
 
 .checkoutProduct-image{
     object-fit: contain;
     width: 180px;
     height: 180px;
+}
+
+@media (max-width: 414px) {
+    .checkoutProduct-info{
+        padding-left: 40px;
+
+    }
 }

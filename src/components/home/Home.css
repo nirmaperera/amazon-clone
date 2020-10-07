@@ -18,3 +18,32 @@
     margin-left: 5px;
     margin-right: 5px;
 }
+
+@media (max-width: 614px) {
+    .home-container{
+        width: 500px;
+    }
+    .home-row{
+      flex-direction: column;
+      width: 450px;
+
+    }
+
+    .home{
+        width: 603px;
+        padding-bottom: 20%;
+    }
+}
+@media (max-width: 414px) {
+    .home-row{
+      flex-direction: column;
+    }
+
+    .home{
+        padding-bottom: 20%;
+        width: unset !important;
+    }
+
+
+
+}

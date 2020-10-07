@@ -8,12 +8,14 @@ import { auth } from "../../firebase";
 import { useHistory } from 'react-router-dom';
 import SearchList from '../searchList/SearchList';
 import Backdrop from '../backdrop/backdrop';
+import MenuIcon from '@material-ui/icons/Menu';
+import SideBar from './SideBar';
 
 function Header() {
     const [{ cart, user, products }, dispatch] = useStateValue();
     const [search, setSearch] = useState('');
     const [isSearching, setSearching] = useState(false);
-    const [sideOpen, setSideOpen] = useState(true);
+    const [sideOpen, setSideOpen] = useState(false);
 
     const history = useHistory();
 
@@ -35,23 +37,27 @@ function Header() {
         }
     }
 
-    const backdropClickHandler = () => {
-        setSideOpen(false)
-        setSearching(false)
-    };
-
-
-    let backdrop;
-
-    if (sideOpen) {
-        backdrop = <Backdrop click={backdropClickHandler} />
+    const menuToggle = () => {
+        console.log('click');
+        setSideOpen(true);
     }
+
     return (
         <div className="header-container">
-            <Link to='/'>
-                <img className="header-logo"
-                    alt="logo" src="http://pngimg.com/uploads/amazon/amazon_PNG11.png" />
-            </Link>
+            <SideBar className={"my-menu"} pageWrapId={"page-wrap"} outerContainerId={"App"} user={user} handleAuth={handleAuth} />
+            <div className="header-container-mobile">
+                <Link to='/'>
+                    <img className="header-logo"
+                        alt="logo" src="http://pngimg.com/uploads/amazon/amazon_PNG11.png" />
+                </Link>
+
+                <Link to={!user ? './login' : './checkout'}>
+                    <div className="header-optionBasket-mobile">
+                        <ShoppingCartOutlinedIcon />
+                        <span className="header-optionLineTwo header-basketCount">{!user ? 0 : cart?.length}</span>
+                    </div>
+                </Link>
+            </div>
             <div className="header-search" style={{ top: isSearching ? ' 200px' : '0px' }}>
                 <div className="header-searchBar">
                     <input className="header-searchInput" type="text" value={search} onChange={handleSearch} />
@@ -92,9 +98,13 @@ function Header() {
                         <span className="header-optionLineTwo header-basketCount">{!user ? 0 : cart?.length}</span>
                     </div>
                 </Link>
-                {isSearching ? backdrop : null}
+
+
+
 
             </div>
+
+
         </div>
     );
 }

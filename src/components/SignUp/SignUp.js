@@ -48,7 +48,7 @@ function SignUp() {
                     <button onClick={register} className="signUp-btn"> Create your Amazon account</button>
 
                     <p>
-                        Already have an account? <Link to="/login"> Sign-In</Link>
+                        Already have an account? <Link to="/login"> <strong>Sign-In</strong></Link>
                     </p>
                 </form>
             </div>

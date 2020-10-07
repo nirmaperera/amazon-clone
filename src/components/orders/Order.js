@@ -17,7 +17,7 @@ function Order({ order }) {
             <h2>Order</h2>
             <p>{moment.unix(order.data.created).format("MMMM Do YYYY, h:mma")}</p>
             <p className="order-id">
-                <small>{order.id}</small>
+                <small><strong>{order.id}</strong></small>
             </p>
             {order.data.cart?.map(item => (
                 <CheckoutProduct
@@ -31,7 +31,7 @@ function Order({ order }) {
             ))}
             <CurrencyFormat
                 renderText={(value) => (
-                    <h3 className="order-total">Order Total: {value}</h3>
+                    <h3 className="order-total">Order Total: <strong>{value}</strong></h3>
                 )}
                 decimalScale={2}
                 value={order.data.amount / 100}
