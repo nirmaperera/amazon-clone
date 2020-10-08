@@ -2,7 +2,7 @@ export const initialState = {
     cart: [],
     subTotal: 0,
     user: null,
-    product: []
+    product: [],
 };
 
 //selector

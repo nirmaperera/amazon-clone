@@ -25,6 +25,13 @@
     font-size: 1rem;
 }
 
+.product-info a{
+    color:#111;
+}
+
+.product-info a:hover{
+    color:	#404040;
+}
 
 .product-container > button{
     border:1px solid;

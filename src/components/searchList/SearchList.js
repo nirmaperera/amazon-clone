@@ -1,18 +1,14 @@
 import React, { useEffect } from 'react';
-import { useStateValue } from '../../StateProvider';
 import { Link } from 'react-router-dom';
 
 import './SearchList.css';
 
-function SearchList({ title, id, price, image, rating, description, searching }) {
-    //console.log(this.props, 'this props')
-    const [{ cart, isSearching }, dispatch] = useStateValue();
-
+function SearchList({ title, id, price, image, rating, description, searching, backdropClickHandler }) {
     return (
         <div className="searchList-container" style={{ backgroundColor: searching ? '#fff' : 'none' }}>
             {searching ?
                 <ul className="searchList-dropdown">
-                    <Link to={{
+                    <Link onClick={backdropClickHandler} to={{
                         pathname: '/product',
                         state: {
                             id: id,
@@ -21,13 +17,13 @@ function SearchList({ title, id, price, image, rating, description, searching })
                             image: image,
                             rating: rating,
                             description: description,
+                            searching: false
                         }
                     }}>
                         <li className="searchList-item">{title}</li>
                     </Link>
                 </ul>
                 : null}
-
         </div>
     );
 }

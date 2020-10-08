@@ -8,6 +8,7 @@ import CurrencyFormat from "react-currency-format";
 import { getCartTotal } from "../../Reducer";
 import axios from '../../axios';
 import { db } from "../../firebase";
+import { auth } from "../../firebase";
 
 function Payment() {
     const [{ cart, user }, dispatch] = useStateValue();
@@ -16,9 +17,17 @@ function Payment() {
     const [succeeded, setSuceeded] = useState(false);
     const [processing, setProcessing] = useState("");
     const [clientSecret, setClientSecret] = useState(true);
+    const [address, setAddress] = useState('');
     const history = useHistory();
 
     useEffect(() => {
+
+        //get the user home address
+        // if (user?.uid) {
+        //     //console.log(user?.uid, 'USER');
+        //     handleUserAddress();
+        // }
+
         //generate the stripe secret to charge the customer
         const getClientSecret = async () => {
             const response = await axios({
@@ -29,7 +38,7 @@ function Payment() {
             setClientSecret(response.data.clientSecret);
         }
         getClientSecret();
-    }, [cart])
+    }, [cart, user])
     console.log('the secret is ', clientSecret);
 
     const stripe = useStripe();
@@ -66,6 +75,26 @@ function Payment() {
         setDisabled(e.empty);
         setError(e.error ? e.error.message : "");
     }
+
+    // const handleUserAddress = () => {
+    //     auth.onAuthStateChanged(authUser => {
+    //         if (authUser) {
+    //             console.log(authUser.uid);
+    //             // db.collection('users')
+    //             //     .doc(authUser.uid)
+    //             //     .get()
+    //             //     .then(snapshot => {
+    //             //         const address = {
+    //             //             street: snapshot.data().street,
+    //             //             cityState: snapshot.data().cityState,
+    //             //             country: snapshot.data().country
+    //             //         }
+    //             //         console.log('address', address);
+    //             //         setAddress(address);
+    //             //     })
+    //         }
+    //     })
+    // }
     return (
         <div className="payment-container">
             <div className="payment">
@@ -77,9 +106,15 @@ function Payment() {
                         <h3>Delivery address</h3>
                     </div>
                     <div className="payment-address">
+                        {/* <p>{user?.email}</p>
+                        <p> {address?.street}</p>
+                        <p> {address?.cityState}</p>
+                        <p> {address?.country}</p> */}
+
                         <p>{user?.email}</p>
-                        <p> 123 React Lane</p>
-                        <p> New York, NY </p>
+                        <p> 23 React Lane</p>
+                        <p> New York NY, 10021</p>
+                        <p> USA</p>
                     </div>
                 </div>
                 <div className="payment-section">

@@ -20,23 +20,27 @@
 }
 
 @media (max-width: 614px) {
-    .home-container{
-        width: 500px;
-    }
+
     .home-row{
       flex-direction: column;
-      width: 450px;
+      margin: 0 auto;
 
     }
 
     .home{
-        width: 603px;
+        width: 600px;
         padding-bottom: 20%;
     }
 }
 @media (max-width: 414px) {
+
+    .home-container{
+        width: 560px;
+    }
+
     .home-row{
       flex-direction: column;
+      margin: 0 auto;
     }
 
     .home{

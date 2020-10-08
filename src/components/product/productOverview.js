@@ -1,11 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
 import StarRateOutlinedIcon from '@material-ui/icons/StarRateOutlined';
 import AddShoppingCartOutlinedIcon from '@material-ui/icons/AddShoppingCartOutlined';
 import moment from 'moment';
 import './Product.css';
 import { useStateValue } from '../../StateProvider';
-
+import { calculateDate } from '../../functions';
 import { withRouter } from "react-router";
 
 import './productOverview.css';
@@ -13,6 +12,8 @@ import './productOverview.css';
 function ProductOverview(props) {
     const [{ cart }, dispatch] = useStateValue();
     // console.log('the cart', cart)
+
+
     const addToCart = () => {
         //dispatch item into data layer
         dispatch({
@@ -28,16 +29,6 @@ function ProductOverview(props) {
         });
     }
 
-    const calculateDate = (num) => {
-        console.log(moment().add(num, 'weeks').startOf('isoWeek'))
-        let nextWeek = moment().add(num, 'weeks').startOf('isoWeek');
-        nextWeek = nextWeek._d
-        nextWeek.toDateString();
-        return nextWeek
-    }
-
-
-
     return (
         <div className="productOverview-container">
             <div>
@@ -50,7 +41,6 @@ function ProductOverview(props) {
             <div className="productOverview">
                 <div className="productOverview-first">
                     <img src={props.location.state.image}></img>
-
                 </div>
                 <div className="productOverview-middle">
                     <h2>{props.location.state.title}</h2>
@@ -64,9 +54,7 @@ function ProductOverview(props) {
                         </p>
                         <hr />
                         <p className="productOverview-description">{props.location.state.description}</p>
-
                     </div>
-
                 </div>
 
                 <div className="productOverview-last">
@@ -77,10 +65,7 @@ function ProductOverview(props) {
                     <h4 className="productOverview-last-stock">In Stock.</h4>
                     <button onClick={addToCart}> <AddShoppingCartOutlinedIcon />Add to Cart</button>
                 </div>
-
-
             </div>
-
         </div>
     )
 }

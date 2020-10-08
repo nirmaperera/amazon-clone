@@ -23,7 +23,6 @@ function Home() {
                         description: doc.data().description
                     }
                     productsTemp.push(product)
-                    console.log(product);
                 })
                 setProducts(productsTemp);
                 dispatch({

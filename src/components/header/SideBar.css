@@ -1,7 +1,4 @@
-html,
-body {
-  margin: 0;
-}
+
 
 #App {
   font-family: sans-serif;
@@ -101,6 +98,4 @@ body {
     .header-option{
         margin-bottom: 20px;
     }
-
-
 }

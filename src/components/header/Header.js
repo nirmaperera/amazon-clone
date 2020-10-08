@@ -8,15 +8,13 @@ import { auth } from "../../firebase";
 import { useHistory } from 'react-router-dom';
 import SearchList from '../searchList/SearchList';
 import Backdrop from '../backdrop/backdrop';
-import MenuIcon from '@material-ui/icons/Menu';
 import SideBar from './SideBar';
+import { searchForProduct } from '../../functions';
 
 function Header() {
     const [{ cart, user, products }, dispatch] = useStateValue();
     const [search, setSearch] = useState('');
     const [isSearching, setSearching] = useState(false);
-    const [sideOpen, setSideOpen] = useState(false);
-
     const history = useHistory();
 
 
@@ -37,9 +35,14 @@ function Header() {
         }
     }
 
-    const menuToggle = () => {
-        console.log('click');
-        setSideOpen(true);
+    const backdropClickHandler = () => {
+        setSearching(false)
+        setSearch("");
+    }
+
+    let backdrop;
+    if (isSearching) {
+        backdrop = <Backdrop click={backdropClickHandler} />
     }
 
     return (
@@ -48,7 +51,7 @@ function Header() {
             <div className="header-container-mobile">
                 <Link to='/'>
                     <img className="header-logo"
-                        alt="logo" src="http://pngimg.com/uploads/amazon/amazon_PNG11.png" />
+                        alt="logo" src="https://pngimg.com/uploads/amazon/amazon_PNG11.png" />
                 </Link>
 
                 <Link to={!user ? './login' : './checkout'}>
@@ -64,12 +67,12 @@ function Header() {
                     <SearchIcon className="header-searchIcon" />
                 </div>
                 <div className="header-search-dropdown" style={{ maxHeight: isSearching ? ' 400px' : '0px' }}>
-                    {products && products?.filter(searchForProduct(search)).map((product) => <SearchList key={product.id} searching={isSearching} title={product.title} id={product.id}
-
-                        image={product.image}
-                        price={product.price}
-                        rating={product.rating}
-                        description={product.description} />)}
+                    {products && products?.filter(searchForProduct(search)).map((product) =>
+                        <SearchList key={product.id} searching={isSearching} backdropClickHandler={backdropClickHandler} title={product.title} id={product.id}
+                            image={product.image}
+                            price={product.price}
+                            rating={product.rating}
+                            description={product.description} />)}
                 </div>
             </div>
             <div className="header-nav">
@@ -98,23 +101,10 @@ function Header() {
                         <span className="header-optionLineTwo header-basketCount">{!user ? 0 : cart?.length}</span>
                     </div>
                 </Link>
-
-
-
-
+                {backdrop}
             </div>
-
-
         </div>
     );
 }
-
-const searchForProduct = function (search) {
-    return function (x) {
-
-        return x.title.toLowerCase().includes(search.toLowerCase()) || !search;
-    }
-}
-
 
 export default Header;

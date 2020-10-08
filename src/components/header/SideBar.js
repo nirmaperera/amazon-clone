@@ -1,12 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './SideBar.css';
-import { useStateValue } from '../../StateProvider';
-import { auth } from "../../firebase";
-import { useHistory } from 'react-router-dom';
-import SearchList from '../searchList/SearchList';
-import Backdrop from '../backdrop/backdrop';
-import MenuIcon from '@material-ui/icons/Menu';
+
 import { slide as Menu } from 'react-burger-menu';
 
 function SideBar({ user, handleAuth }) {
