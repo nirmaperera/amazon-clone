@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './Orders.css'
 import { useStateValue } from '../../StateProvider';
-import CurrencyFormat from "react-currency-format";
-import { getCartTotal } from "../../Reducer";
-import { useHistory } from 'react-router-dom';
 import { db } from '../../firebase';
 import Order from './Order';
 function Orders() {
-    const [{ cart, user }, dispatch] = useStateValue();
+    const [{ user }] = useStateValue();
     const [orders, setOrders] = useState([]);
     useEffect(() => {
         if (user) {

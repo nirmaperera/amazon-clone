@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import StarRateOutlinedIcon from '@material-ui/icons/StarRateOutlined';
 import AddShoppingCartOutlinedIcon from '@material-ui/icons/AddShoppingCartOutlined';
@@ -8,7 +8,7 @@ import { useStateValue } from '../../StateProvider';
 
 function Product({ id, title, price, image, rating, description }) {
     //console.log(this.props, 'this props')
-    const [{ cart }, dispatch] = useStateValue();
+    const [{ }, dispatch] = useStateValue();
     // console.log('the cart', cart)
     const addToCart = () => {
         //dispatch item into data layer
@@ -52,7 +52,7 @@ function Product({ id, title, price, image, rating, description }) {
 
                 </div>
             </div>
-            <img src={image}></img>
+            <img alt="product" src={image}></img>
             <button onClick={addToCart}> <AddShoppingCartOutlinedIcon />Add to Cart</button>
         </div>
     );

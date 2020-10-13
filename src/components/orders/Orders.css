@@ -6,8 +6,12 @@
     margin:20px 0;
 }
 
-.order-container > p {
-    margin-bottom:40px
+.order-container > p:last-of-type {
+    margin-bottom:50px
+}
+
+.order-container > p:last-of-type span{
+   font-weight: 500;
 }
 
 

@@ -79,6 +79,12 @@
     background: linear-gradient(to bottom,#f7f8fa,#e7e9ec);
 }
 
+.auth-error{
+    color:red;
+    font-size: 0.8rem;
+    margin-top:10px;
+}
+
 
 @media (max-width: 414px) {
     .login > form > p{

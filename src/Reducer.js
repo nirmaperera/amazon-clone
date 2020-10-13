@@ -3,6 +3,7 @@ export const initialState = {
     subTotal: 0,
     user: null,
     product: [],
+    address: '',
 };
 
 //selector
@@ -50,6 +51,13 @@ const reducer = (state, action) => {
                 ...state,
                 products: action.products
             };
+
+        case 'ADD_ADDRESS':
+            return {
+                ...state,
+                address: action.address
+            };
+
         default:
             return state
     }

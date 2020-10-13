@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import { Link } from 'react-router-dom';
@@ -12,15 +12,17 @@ import SideBar from './SideBar';
 import { searchForProduct } from '../../functions';
 
 function Header() {
-    const [{ cart, user, products }, dispatch] = useStateValue();
+    const [{ cart, user, products }] = useStateValue();
     const [search, setSearch] = useState('');
     const [isSearching, setSearching] = useState(false);
+    const [isLoggedOut, setLoggedOut] = useState(false);
     const history = useHistory();
 
 
     const handleAuth = () => {
         if (user) {
             auth.signOut();
+            setLoggedOut(true);
             history.push('/')
         }
     }
@@ -57,7 +59,7 @@ function Header() {
                 <Link to={!user ? './login' : './checkout'}>
                     <div className="header-optionBasket-mobile">
                         <ShoppingCartOutlinedIcon />
-                        <span className="header-optionLineTwo header-basketCount">{!user ? 0 : cart?.length}</span>
+                        <span className="header-optionLineTwo header-basketCount">{isLoggedOut ? 0 : cart?.length}</span>
                     </div>
                 </Link>
             </div>
@@ -98,7 +100,7 @@ function Header() {
                 <Link to={!user ? './login' : './checkout'}>
                     <div className="header-optionBasket">
                         <ShoppingCartOutlinedIcon />
-                        <span className="header-optionLineTwo header-basketCount">{!user ? 0 : cart?.length}</span>
+                        <span className="header-optionLineTwo header-basketCount">{isLoggedOut ? 0 : cart?.length}</span>
                     </div>
                 </Link>
                 {backdrop}

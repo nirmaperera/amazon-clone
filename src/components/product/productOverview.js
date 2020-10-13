@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import StarRateOutlinedIcon from '@material-ui/icons/StarRateOutlined';
 import AddShoppingCartOutlinedIcon from '@material-ui/icons/AddShoppingCartOutlined';
 import moment from 'moment';
@@ -10,9 +10,8 @@ import { withRouter } from "react-router";
 import './productOverview.css';
 
 function ProductOverview(props) {
-    const [{ cart }, dispatch] = useStateValue();
+    const [{ }, dispatch] = useStateValue();
     // console.log('the cart', cart)
-
 
     const addToCart = () => {
         //dispatch item into data layer
@@ -33,14 +32,15 @@ function ProductOverview(props) {
         <div className="productOverview-container">
             <div>
                 <img
+                    alt="ad"
                     className="checkout-ad"
                     src="https://images-na.ssl-images-amazon.com/images/G/02/UK_CCMP/TM/OCC_Amazon1._CB423492668_.jpg"
-                    alt=""
+
                 />
             </div>
             <div className="productOverview">
                 <div className="productOverview-first">
-                    <img src={props.location.state.image}></img>
+                    <img alt="product" src={props.location.state.image}></img>
                 </div>
                 <div className="productOverview-middle">
                     <h2>{props.location.state.title}</h2>
@@ -60,8 +60,8 @@ function ProductOverview(props) {
                 <div className="productOverview-last">
                     <p><input type='radio'></input> <strong>One-time purchase: </strong> ${props.location.state.price}</p>
                     <p><strong>FREE Shipping</strong> on your first order.</p>
-                    <p>Arrives: <strong>{moment(calculateDate(2)).format('MMMM Do YYYY')}</strong> </p>
-                    <p>Fastest delivery:  <strong>{moment(calculateDate(1)).format('MMMM Do YYYY')}</strong> </p>
+                    <p>Arrives: <strong>{moment(calculateDate(14)).format('MMMM Do YYYY')}</strong> </p>
+                    <p>Fastest delivery:  <strong>{moment(calculateDate(7)).format('MMMM Do YYYY')}</strong> </p>
                     <h4 className="productOverview-last-stock">In Stock.</h4>
                     <button onClick={addToCart}> <AddShoppingCartOutlinedIcon />Add to Cart</button>
                 </div>

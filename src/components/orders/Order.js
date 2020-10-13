@@ -1,24 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './order.css'
-import { useStateValue } from '../../StateProvider';
+
 import CurrencyFormat from "react-currency-format";
-import { getCartTotal } from "../../Reducer";
-import { useHistory } from 'react-router-dom';
-import { db } from '../../firebase';
+
 import moment from 'moment';
 import CheckoutProduct from '../checkout/CheckoutProduct';
 
 
+
 function Order({ order }) {
-    const [{ cart, user }, dispatch] = useStateValue();
+
 
     return (
         <div className="order-container">
             <h2>Order</h2>
-            <p>{moment.unix(order.data.created).format("MMMM Do YYYY, h:mma")}</p>
+            <p>Order Date: {moment.unix(order.data.created).format("MMMM Do YYYY, h:mma")}</p>
+
             <p className="order-id">
                 <small><strong>{order.id}</strong></small>
             </p>
+            <p>Delivery Date: <span>{moment.unix(order.data.created).add(7, 'd').format("MMMM Do YYYY")}</span></p>
             {order.data.cart?.map(item => (
                 <CheckoutProduct
                     id={item.id}

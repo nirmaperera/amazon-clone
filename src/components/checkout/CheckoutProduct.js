@@ -4,18 +4,17 @@ import { useStateValue } from '../../StateProvider';
 import StarRateOutlinedIcon from '@material-ui/icons/StarRateOutlined';
 
 function CheckoutProduct({ id, image, title, price, description, rating, hideButton }) {
-    const [{ cart }, dispatch] = useStateValue();
+    const [dispatch] = useStateValue();
     const removeFromCart = () => {
         dispatch({
             type: 'REMOVE_FROM_CART',
             id: id,
         })
-
     }
 
     return (
         <div className="checkoutProduct-container">
-            <img src={image} className="checkoutProduct-image" />
+            <img alt="product" src={image} className="checkoutProduct-image" />
             <div className="checkoutProduct-info">
                 <p className="checkoutProduct-title">{title}</p>
                 <p className="checkoutProduct-price">

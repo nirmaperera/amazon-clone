@@ -8,25 +8,25 @@ import CurrencyFormat from "react-currency-format";
 import { getCartTotal } from "../../Reducer";
 import axios from '../../axios';
 import { db } from "../../firebase";
-import { auth } from "../../firebase";
+import LocationSearchInput from '../Address/LocationSearchInput';
 
 function Payment() {
-    const [{ cart, user }, dispatch] = useStateValue();
+    const [{ cart, user, address }, dispatch] = useStateValue();
     const [error, setError] = useState(null);
     const [disabled, setDisabled] = useState(true);
     const [succeeded, setSuceeded] = useState(false);
     const [processing, setProcessing] = useState("");
     const [clientSecret, setClientSecret] = useState(true);
-    const [address, setAddress] = useState('');
+    const [_address, setAddress] = useState('');
     const history = useHistory();
 
     useEffect(() => {
-
-        //get the user home address
-        // if (user?.uid) {
-        //     //console.log(user?.uid, 'USER');
-        //     handleUserAddress();
-        // }
+        if (user?.uid) {
+            handleGetUserAddress();
+        }
+        if (cart?.length === 0) {
+            setDisabled(true)
+        }
 
         //generate the stripe secret to charge the customer
         const getClientSecret = async () => {
@@ -69,32 +69,47 @@ function Payment() {
             })
             history.replace('./orders')
         })
+
+        //set user address in db
+        handleSetUserAddress();
     }
 
     const handleChange = e => {
-        setDisabled(e.empty);
+        if (cart?.length === 0) {
+            setDisabled(true)
+        }
+        else {
+            setDisabled(e.empty);
+            console.log(e.empty);
+        }
         setError(e.error ? e.error.message : "");
     }
 
-    // const handleUserAddress = () => {
-    //     auth.onAuthStateChanged(authUser => {
-    //         if (authUser) {
-    //             console.log(authUser.uid);
-    //             // db.collection('users')
-    //             //     .doc(authUser.uid)
-    //             //     .get()
-    //             //     .then(snapshot => {
-    //             //         const address = {
-    //             //             street: snapshot.data().street,
-    //             //             cityState: snapshot.data().cityState,
-    //             //             country: snapshot.data().country
-    //             //         }
-    //             //         console.log('address', address);
-    //             //         setAddress(address);
-    //             //     })
-    //         }
-    //     })
-    // }
+    const handleGetUserAddress = () => {
+        db.collection('users')
+            .doc(user?.uid)
+            .get()
+            .then(snapshot => {
+                if (snapshot.data() === undefined) {
+                    setAddress('');
+                }
+                else {
+                    const addressTemp = {
+                        address: snapshot.data().address,
+                    }
+                    setAddress(addressTemp);
+                }
+            })
+    }
+
+    const handleSetUserAddress = () => {
+        db.collection('users')//nosql databases
+            .doc(user?.uid)
+            .set({ //add is for collection, to add to a document use set
+                address: address
+            })
+    }
+
     return (
         <div className="payment-container">
             <div className="payment">
@@ -106,20 +121,15 @@ function Payment() {
                         <h3>Delivery address</h3>
                     </div>
                     <div className="payment-address">
-                        {/* <p>{user?.email}</p>
-                        <p> {address?.street}</p>
-                        <p> {address?.cityState}</p>
-                        <p> {address?.country}</p> */}
-
                         <p>{user?.email}</p>
-                        <p> 23 React Lane</p>
-                        <p> New York NY, 10021</p>
-                        <p> USA</p>
+                        {_address ? <p>{_address.address}</p> :
+                            <LocationSearchInput />}
+                        {address ? <p><strong>Delievery Address:</strong> {address}</p> : null}
                     </div>
                 </div>
                 <div className="payment-section">
                     <div className="payment-title">
-                        <h3>Review Items and Delivery</h3>
+                        <h3>Review Items</h3>
                     </div>
                     <div className="payment-items">
                         {cart.map(item => (
@@ -166,3 +176,6 @@ function Payment() {
 }
 
 export default Payment
+
+// todo
+// - add address to firestore

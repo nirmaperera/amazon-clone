@@ -6,6 +6,7 @@ import { auth } from '../../firebase';
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const history = useHistory();
 
     const signIn = e => {
@@ -15,13 +16,14 @@ function Login() {
             .then(auth => {
                 history.push('./')
             })
-            .catch(error => alert(error.messsage));
+            .catch(error => setError(error.message));
 
     }
     return (
         <div className="login-container">
             <Link to="/">
                 <img
+                    alt="logo"
                     className="login-logo"
                     src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png'
                 />
@@ -35,9 +37,9 @@ function Login() {
                     <h5>Password</h5>
                     <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
                     <button type='submit' onClick={signIn} className="login-signIn">Sign In</button>
-                    <p>
-                        By continuing, you agree to Amazon CLONE's Conditions of Use and Privacy Notice.
-                    </p>
+
+                    {error && <div className="auth-error">{error}</div>}
+                    <p> By continuing, you agree to Amazon CLONE's Conditions of Use and Privacy Notice. </p>
                 </form>
 
             </div>

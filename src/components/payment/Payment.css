@@ -50,7 +50,23 @@
     margin-top: 10px;
     border-color: #a88734 #9c7e31 #846a29;
     color: #111;
+    cursor: pointer;
   }
+
+  .payment-details > form > div > button[disabled]{
+    background: lightgray;
+    cursor: unset;
+    border:none;
+  }
+
+.payment-priceContainer{
+    margin-top: 10%;
+}
+
+.payment-warning{
+    color:#9c7e31;
+    margin-top:5%;
+}
 
 
 @media (max-width: 768px) {
