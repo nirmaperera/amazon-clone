@@ -10,7 +10,7 @@ import './LocationSearchInput.css';
 
 function LocationSearchInput(props) {
     const [address, setAddress] = useState('');
-    const [dispatch] = useStateValue();
+    const [{ }, dispatch] = useStateValue();
 
     const handleChange = address => {
         setAddress(address);
