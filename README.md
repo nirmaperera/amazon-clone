@@ -1,4 +1,4 @@
-# Amazon Clone :wink:
+# Amazon Clone :shopping_cart:
 
 This web app is a clone of Amazon.
 
