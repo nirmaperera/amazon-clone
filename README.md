@@ -1,4 +1,4 @@
-# Amazon Clone :shopping trolley:
+# Amazon Clone :wink:
 
 This web app is a clone of Amazon.
 
