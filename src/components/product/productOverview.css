@@ -1,88 +1,90 @@
 a:visited{
-    color:black;
+	color:black;
 }
 .productOverview-container{
-    background-color: #fff;
-    padding-bottom: 10%;
+	background-color: #fff;
+	padding-bottom: 10%;
 
 }
 .productOverview{
-    display: flex;
-    margin:20px;
+	display: flex;
+	margin:20px;
 }
 
 .productOverview-first{
-    display: flex;
-    flex:0.2;
+	display: flex;
+	flex:0.2;
 }
 .productOverview-first >img{
-    width: 230px;
-    max-width: 230px;
-    max-height: 230px;
-    height: 230px;
-    padding:40px;
+	width: 230px;
+	max-width: 230px;
+	max-height: 230px;
+	height: 230px;
+	padding:40px;
 }
 .productOverview-middle{
-    flex: 0.6;
-    padding:40px;
-    padding-top:0px
+	flex: 0.6;
+	padding:40px;
+	padding-top:0px
 }
 
 .productOverview-last{
-    flex: 0.3;
-    display: flex;
-    flex-direction: column;
-    padding:20px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    line-height: 2.5;
-
+	flex: 0.3;
+	display: flex;
+	flex-direction: column;
+	padding:20px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	line-height: 2.5;
 }
 
 .productOverview-last > p{
-    font-size: 1rem;
+	font-size: 1rem;
 }
-.productOverview-description{
-    line-height: 1.7;
-    padding-top:10px;
 
+.productOverview-description{
+	line-height: 1.7;
+	padding-top:10px;
 }
+
 .productOverview-last-stock{
-    color:green
+	color:green
 }
+
 .productOverview-last > button{
-    border:1px solid;
-    margin-top:10px;
-    border-color: #a88734 #9c7e31 #846a29;
-    color:#111;
-    background-color: #f0c14b;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    border-radius: 5px;
-    padding:5px 10px;
-    text-align: center;
-    justify-content: center;
+	border:1px solid;
+	margin-top:10px;
+	border-color: #a88734 #9c7e31 #846a29;
+	color:#111;
+	background-color: #f0c14b;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	border-radius: 5px;
+	padding:5px 10px;
+	text-align: center;
+	justify-content: center;
 }
 
 @media (max-width: 768px) {
-    .productOverview-container{
-        height: unset;
-        padding: 20px 0;
-        padding-top: 0;
-        margin: 0 auto;
-    }
-    .productOverview{
-        flex-direction: column;
-    }
-    .productOverview-first >img {
-        margin: 0 auto;
-    }
+	.productOverview-container{
+		height: unset;
+		padding: 20px 0;
+		padding-top: 0;
+		margin: 0 auto;
+	}
+
+	.productOverview{
+		flex-direction: column;
+	}
+
+	.productOverview-first >img {
+		margin: 0 auto;
+	}
 }
 
 @media (max-width: 414px){
-    .productOverview-container{
-        width: 560px;
-    }
-
+	.productOverview-container{
+		width: 560px;
+	}
 }

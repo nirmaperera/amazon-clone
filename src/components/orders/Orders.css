@@ -1,33 +1,31 @@
 .orders-container{
-    padding:20px 80px;
+	padding:20px 80px;
 }
 
 .orders-container >h1{
-    margin:20px 0;
+	margin:20px 0;
 }
 
 .order-container > p:last-of-type {
-    margin-bottom:50px
+	margin-bottom:50px
 }
 
 .order-container > p:last-of-type span{
    font-weight: 500;
 }
 
-
 @media (max-width: 768px) {
-    .orders-container{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 20px 40px;
-    }
+	.orders-container{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 20px 40px;
+	}
 }
 
 /* for mobiles */
-
 @media (max-width: 414px) {
-    .orders-container{
-        width: 483px;
-    }
+	.orders-container{
+		width: 483px;
+	}
 }

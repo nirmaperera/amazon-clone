@@ -1,66 +1,68 @@
 export const initialState = {
-    cart: [],
-    subTotal: 0,
-    user: null,
-    product: [],
-    address: '',
+	cart: [],
+	subTotal: 0,
+	user: null,
+	product: [],
+	address: '',
 };
 
 //selector
 export const getCartTotal = (cart) =>
-    cart?.reduce((amount, item) => item.price + amount, 0);
+	cart?.reduce((amount, item) => item.price + amount, 0);
 
 const reducer = (state, action) => {
-    console.log(action);
-    switch (action.type) {
-        case 'ADD_TO_CART':
-            return {
-                ...state,
-                cart: [...state.cart, action.item],
-            };
-        case 'REMOVE_FROM_CART':
-            const index = state.cart.findIndex(
-                (cartItem) => cartItem.id === action.id
-            );
-            let newCart = [...state.cart];
-            if (index >= 0) {
-                newCart.splice(index, 1);
+	console.log(action);
+	switch (action.type) {
+		case 'ADD_TO_CART':
+			return {
+				...state,
+				cart: [...state.cart, action.item],
+			};
 
-            } else {
-                console.warn(`can't remove product (id : ${action.id}) as it's not in the cart`)
-            }
-            return {
-                ...state,
-                cart: newCart
-            }
-        case 'SET_USER':
-            return {
-                ...state,
-                user: action.user
-            };
+		case 'REMOVE_FROM_CART':
+			const index = state.cart.findIndex(
+				(cartItem) => cartItem.id === action.id
+			);
+			let newCart = [...state.cart];
+			if (index >= 0) {
+				newCart.splice(index, 1);
 
-        case 'EMPTY_CART':
-            return {
-                ...state,
-                cart: []
-            };
+			} else {
+				console.warn(`can't remove product (id : ${action.id}) as it's not in the cart`)
+			}
+			return {
+				...state,
+				cart: newCart
+			}
 
-        case 'GET_PRODUCTS':
-            console.log(action.products);
-            return {
-                ...state,
-                products: action.products
-            };
+		case 'SET_USER':
+			return {
+				...state,
+				user: action.user
+			};
 
-        case 'ADD_ADDRESS':
-            return {
-                ...state,
-                address: action.address
-            };
+		case 'EMPTY_CART':
+			return {
+				...state,
+				cart: []
+			};
 
-        default:
-            return state
-    }
+		case 'GET_PRODUCTS':
+			console.log(action.products);
+			return {
+				...state,
+				products: action.products
+			};
+
+		case 'ADD_ADDRESS':
+			return {
+				...state,
+				address: action.address
+			};
+
+		default:
+			return state
+	}
 }
 
 export default reducer
