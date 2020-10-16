@@ -14,7 +14,7 @@ import Login from './components/login/Login';
 import SignUp from './components/SignUp/SignUp';
 import ProductOverview from './components/product/productOverview';
 
-import './App.css';
+
 
 const promise = loadStripe(
 	"pk_test_51HXTdHDFq5Jfszr5r2VjtOKLGtAFwqHo4PX7LRrP0NMqtTm4eZIhjozPFKRmhSnfPTej0MV8vCh8fKGfolHlTCmB004kzYSx5z"
