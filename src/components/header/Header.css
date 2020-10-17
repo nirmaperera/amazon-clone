@@ -129,7 +129,6 @@
 
 @media (max-width: 490px) {
 	.header-container{
-	  width: 560px !important;
 	  flex-direction: column;
 	  height: 95px;
 	  padding-bottom: 20px;
@@ -154,7 +153,7 @@
 		display: flex !important;
 		align-items: center;
 		position: relative;
-		left: 163px;
+		left: 80px;
 	}
 	.header-logo{
 		position: relative;
@@ -194,7 +193,7 @@
 		display: flex !important;
 		align-items: center;
 		position: relative;
-		left: 160px;
+		left: 80px;
 	}
 
 	.header-logo{

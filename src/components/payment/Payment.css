@@ -90,10 +90,10 @@
 
 
 @media (max-width: 414px) {
-	.payment-container{
-		width: 560px;
-	}
 	.payment > h1{
 		margin:0;
+	}
+	.checkoutProduct-container{
+		margin-bottom: 50px;
 	}
 }

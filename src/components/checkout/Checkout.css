@@ -31,6 +31,5 @@
 @media (max-width: 414px) {
 	.checkout-container{
 		flex-direction: column;
-		width: 520px;
 	}
 }
