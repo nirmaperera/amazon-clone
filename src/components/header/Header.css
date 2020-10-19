@@ -45,6 +45,8 @@
 .header-searchInput{
 	border-top-left-radius: 15px;
 	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
 	height: 12px;
 	padding:10px;
 	border:none;
@@ -157,7 +159,7 @@
 	}
 	.header-logo{
 		position: relative;
-		left: 40px;
+		left: 25px;
 	}
 }
 
@@ -198,6 +200,6 @@
 
 	.header-logo{
 		position: relative;
-		left: 40px;
+		left: 25px;
 	}
 }

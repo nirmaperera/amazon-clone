@@ -27,7 +27,7 @@
 	}
 
 	.home{
-		padding-bottom: 20%;
+		height: 100px;
 	}
 }
 
@@ -38,7 +38,7 @@
 	}
 
 	.home{
-		padding-bottom: 20%;
+
 		width: unset !important;
 	}
 }
