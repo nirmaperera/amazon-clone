@@ -161,6 +161,7 @@
 		position: relative;
 		left: 25px;
 	}
+
 }
 
 @media (max-width: 630px) {
@@ -201,5 +202,8 @@
 	.header-logo{
 		position: relative;
 		left: 25px;
+	}
+	.header-search-dropdown{
+		width: 86%;
 	}
 }
