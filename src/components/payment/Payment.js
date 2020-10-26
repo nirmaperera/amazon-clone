@@ -10,6 +10,13 @@ import { db } from "../../firebase";
 import CheckoutProduct from '../checkout/CheckoutProduct';
 import LocationSearchInput from '../Address/LocationSearchInput';
 
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
+
 import './Payment.css';
 
 function Payment() {
@@ -19,6 +26,7 @@ function Payment() {
 	const [succeeded, setSuceeded] = useState(false);
 	const [processing, setProcessing] = useState("");
 	const [clientSecret, setClientSecret] = useState(true);
+	const [expanded, setExpanded] = useState('panel1');
 	const [_address, setAddress] = useState('');
 	const history = useHistory();
 
@@ -86,6 +94,10 @@ function Payment() {
 		}
 		setError(e.error ? e.error.message : "");
 	}
+
+	const handleExpand = (panel) => (event, newExpanded) => {
+		setExpanded(newExpanded ? panel : false);
+	};
 
 	const handleGetUserAddress = () => {
 		db.collection('users')
@@ -171,6 +183,24 @@ function Payment() {
 							{error && <div>{error}</div>}
 						</form>
 					</div>
+
+					<Accordion className="payment-expand">
+						<AccordionSummary
+							expandIcon={<ExpandMoreIcon />}
+							aria-controls="panel1a-content"
+							id="panel1a-header"
+						>
+							<Typography>Hint</Typography>
+						</AccordionSummary>
+						<AccordionDetails>
+							<Typography>
+								<strong><u>For Testing Payments</u></strong>< br />
+								<strong>Card #:</strong> 4242 4242 4242 4242 <br />
+								<strong>CVC:</strong> any < br />
+								<strong>Expiry: </strong> any future date
+          				</Typography>
+						</AccordionDetails>
+					</Accordion>
 				</div>
 			</div>
 		</div>

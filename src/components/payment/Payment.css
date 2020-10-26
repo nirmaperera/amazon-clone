@@ -64,6 +64,12 @@
 	margin-top: 10%;
 }
 
+.payment-expand{
+	width: 30%;
+    height: 20%;
+
+}
+
 .payment-warning{
 	color:#9c7e31;
 	margin-top:5%;
@@ -86,7 +92,14 @@
 	.payment-title{
 		margin-bottom: 10%;
 	}
+	.payment-expand{
+		width: unset;
+		margin-top:20px;
+
+	}
 }
+
+
 
 
 @media (max-width: 414px) {
