@@ -1,11 +1,14 @@
+.header-main{
+	position: sticky;
+	top:0;
+	z-index: 100;
+}
+
 .header-container{
 	height:60px;
 	display: flex;
 	align-items: center;
 	background-color: #131921;
-	position: sticky;
-	top:0;
-	z-index: 100;
 }
 
 .header-optionBasket-mobile{
@@ -119,6 +122,7 @@
 	padding-top:10px;
 	cursor: pointer;
 	font-weight: 500;
+	color:black
 }
 
 .searchList-dropdown{
@@ -127,6 +131,35 @@
 
 .header-search-dropdown ul:hover{
 	background-color: #e7e7e7;
+}
+
+.header-bottom{
+	background-color:#242f3e;
+	height: 50px;
+	color:white;
+	display: flex;
+	font-size: 0.8rem;
+	width: 100%;
+	justify-content: space-around;
+	line-height: 3rem;
+	overflow:hidden
+}
+
+.header-bottom > a {
+	color: white !important;
+}
+
+.header-bottom-nav {
+	flex-flow:wrap;
+}
+
+.header-bottom-nav > span{
+	padding-right: 10px;
+	font-weight: 600;
+}
+
+.header-bottom-right > span{
+	font-weight: 600;
 }
 
 @media (max-width: 490px) {
@@ -205,5 +238,8 @@
 	}
 	.header-search-dropdown{
 		width: 86%;
+	}
+	.header-bottom{
+		display: none;
 	}
 }
