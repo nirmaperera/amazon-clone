@@ -67,7 +67,7 @@ function Header() {
 				</div>
 				<div className="header-search" style={{ top: isSearching ? ' 200px' : '0px' }}>
 					<div className="header-searchBar">
-						<input className="header-searchInput" type="text" value={search} onChange={handleSearch} />
+						<input className="header-searchInput" type="search" value={search} onChange={handleSearch} />
 						<SearchIcon className="header-searchIcon" />
 					</div>
 					<div className="header-search-dropdown" style={{ maxHeight: isSearching ? ' 400px' : '0px' }}>

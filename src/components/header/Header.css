@@ -46,16 +46,13 @@
 }
 
 .header-searchInput{
-	border-top-left-radius: 15px;
-	border-bottom-left-radius: 15px;
-	border-bottom-right-radius: 0px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 0px;
     border-top-right-radius: 0px;
-	height: 12px;
-	padding:10px;
-	border:none;
-	width: 100%;
-	position: relative;
-	/* top:130px */
+    border: none;
+    width: 100%;
+    position: relative;
 }
 
 .header-nav{
